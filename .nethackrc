@@ -1,0 +1,66 @@
+# Boolean-valued commands:
+OPTIONS=autodig
+OPTIONS=autopickup
+OPTIONS=autoquiver
+OPTIONS=checkpoint
+OPTIONS=!cmdassist
+OPTIONS=color
+OPTIONS=extmenu
+OPTIONS=hilite_pet
+OPTIONS=lit_corridor
+OPTIONS=pickup_thrown
+OPTIONS=showexp
+OPTIONS=showrace
+OPTIONS=showscore
+OPTIONS=time
+OPTIONS=use_darkgray
+OPTIONS=DECgraphics
+
+# String-valued commands:
+OPTIONS=boulder:0
+OPTIONS=msghistory:20
+OPTIONS=menustyle:full
+OPTIONS=menu_headings:inverse
+OPTIONS=msg_window:reversed
+OPTIONS=number_pad:0
+OPTIONS=pickup_burden:stressed
+OPTIONS=pickup_types:$"?!=/
+OPTIONS=runmode:run
+OPTIONS=suppress_alert:3.3.1
+
+# For NetHack 3.4.3 and dnethack.
+OPTIONS=disclose:+i +a +v +g +c
+# Only supported in NetHack 3.6.0.
+#OPTIONS=disclose:+i +a +v +g +c +o
+
+OPTIONS=!dnethack_start_text
+
+MSGTYPE=hide "You climb .*"
+MSGTYPE=hide "You descend .*"
+MSGTYPE=hide "You fly up .*"
+
+# With the Menucolor Patch installed:
+OPTIONS=menucolors
+MENUCOLOR=".* blessed .*"=green
+MENUCOLOR=".* holy .*"=yellow
+MENUCOLOR=".* cursed .*"=red
+MENUCOLOR=".* uncursed .*"=cyan
+MENUCOLOR=".* unholy .*"=brown
+MENUCOLOR=".* cursed .* (being worn)"=red&underline
+
+# With the Statuscolor patch installed:
+# HP:
+STATUSCOLOR=hp%100=green,hp%66=yellow,hp%50=orange
+STATUSCOLOR=hp%33=red&bold,hp%15:red&inverse,hp%0:red&inverse&blink
+# Pw:
+STATUSCOLOR=pw%100=green,pw%66=yellow,pw%50:orange,pw%33=red&bold
+# Carry:
+STATUSCOLOR=burdened:yellow,stressed:orange,strained:red&bold
+STATUSCOLOR=overtaxed:red&inverse,overloaded:red&inverse&blink
+# Hunger:
+STATUSCOLOR=satiated:yellow,hungry:orange,weak:red&bold
+STATUSCOLOR=fainting:red&inverse,fainted:red&inverse&blink
+# Status:
+STATUSCOLOR=hallu:yellow,conf:orange,stun:red&bold
+STATUSCOLOR=held:red&inverse,blind:red&inverse
+STATUSCOLOR=ill:red&inverse,foodpois:red&inverse,slime:red&inverse
