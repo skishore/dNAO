@@ -401,7 +401,7 @@ typedef long glyph_t;
 /*#define GOLDOBJ */	/* Gold is kept on obj chains - Helge Hafting */
 #define AUTOPICKUP_EXCEPTIONS  /* exceptions to autopickup */
 
-#define DUMP_LOG        /* Dump game end information to a file */
+//#define DUMP_LOG        /* Dump game end information to a file */
 #define DUMP_FN "/dgldir/userdata/%n/dnethack/dumplog/%t"      /* Fixed dumpfile name, if you want
                                    * to prevent definition by users */
 #define DUMPMSGS 20     /* Number of latest messages in the dump file  */

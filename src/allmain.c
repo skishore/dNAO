@@ -355,7 +355,9 @@ hpnotify_format_str(char *str)
     return buf;
 }
 
+#ifdef DUMP_LOG
 static long prev_dgl_extrainfo = 0;
+#endif /* DUMP_LOG */
 
 void
 moveloop()
@@ -1030,10 +1032,12 @@ moveloop()
 		    if(flags.time && !flags.run)
 			flags.botl = 1;
 			
+		    #ifdef DUMP_LOG
 		    if ((prev_dgl_extrainfo == 0) || (prev_dgl_extrainfo < (moves + 250))) {
 				prev_dgl_extrainfo = moves;
 				mk_dgl_extrainfo();
 		    }
+		    #endif /* DUMP_LOG */
 			if(uclockwork){
 				if(u.ustove){
 					if(u.uboiler){
