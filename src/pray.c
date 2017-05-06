@@ -2613,13 +2613,13 @@ boolean praying;	/* false means no messages should be given */
 	alignment = u.ualign.record / 2;	/* Different alignment altar */
     else alignment = u.ualign.record;
 
-    if ((int)Luck < 0 || u.ugangr[Align2gangr(u.ualign.type)] || alignment < 0)
-        p_type = 0;             /* too naughty... */
-    else if ((p_trouble > 0) ? (u.ublesscnt > 200) : /* big trouble */
+    if ((p_trouble > 0) ? (u.ublesscnt > 200) : /* big trouble */
 	(p_trouble < 0) ? (u.ublesscnt > 100) : /* minor difficulties */
-	(u.ublesscnt > 0))			/* not in trouble */
-	p_type = 1;		/* too soon... */
-    else /* alignment >= 0 */ {
+	(u.ublesscnt > 0)) {			/* not in trouble */
+      p_type = 0;		 /* too soon... */
+    } else if ((int)Luck < 0 || u.ugangr[Align2gangr(u.ualign.type)] || alignment < 0) {
+      p_type = 1;               /* too naughty... */
+    } else /* alignment >= 0 */ {
 	if(on_altar() && u.ualign.type != p_aligntyp)
 	    p_type = 2;
 	else
@@ -2734,10 +2734,6 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
     }
 
     if (p_type == 0) {
-        if(on_altar() && u.ualign.type != alignment)
-            (void) water_prayer(FALSE);
-        angrygods(u.ualign.type);       /* naughty */
-    } else if (p_type == 1) {
 		if(on_altar() && u.ualign.type != alignment)
 			(void) water_prayer(FALSE);
 		if(u.ualign.type != A_VOID){
@@ -2745,6 +2741,10 @@ prayer_done()		/* M. Stephenson (1.0.3b) */
 			change_luck(-3);
 			gods_upset(u.ualign.type);
 		}
+    } else if (p_type == 1) {
+        if(on_altar() && u.ualign.type != alignment)
+            (void) water_prayer(FALSE);
+        angrygods(u.ualign.type);       /* naughty */
     } else if(p_type == 2) {
 		if(water_prayer(FALSE)) {
 			/* attempted water prayer on a non-coaligned altar */
