@@ -124,11 +124,12 @@ boolean talk;
 			num += min(1,mons[minions[last]].geno & G_FREQ);
 	    }
 
-	if(!num){ //All minions too strong, or gap between weak and strong minions
-		if(first == 0) return (struct monst *) 0;
-		else mnum = minions[first-1];
+	if (!num) { // All minions are too strong, or there is a gap between weak and strong minions.
+	            // Since always want to summon something, we either choose the strongest
+              // underleveled minion, or, if all minions were overleveled, the weakest one.
+	  mnum = minions[max(first - 1, 0)];
 	}
-/*	Assumption:	minions are presented in ascending order of strength. */
+	/* Assumption: minions are presented in ascending order of strength. */
 	else{
 		for(num = rnd(num); num > 0; first++) if (!(mvitals[minions[first]].mvflags & G_GONE && !In_quest(&u.uz))) {
 			/* skew towards lower value monsters at lower exp. levels */
